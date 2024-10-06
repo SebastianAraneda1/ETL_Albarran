@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="AK0RL_SQLEXPRESS.Albarran"
+  DTS:DTSID="{49AD520A-81B3-498C-8A6D-E3C12468E066}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=AK0RL\SQLEXPRESS;Initial Catalog=Albarran;Integrated Security=True;Application Name=SSIS-ETL_Albarran-{49AD520A-81B3-498C-8A6D-E3C12468E066}AK0RL\SQLEXPRESS.Albarran;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
