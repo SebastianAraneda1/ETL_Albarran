@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{DA216C7F-98EE-4AAF-93B9-EBB3356A7503}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{F9E18245-6175-4860-A555-DE3C31DE866A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -3915,7 +3915,1386 @@ FROM            productos INNER JOIN
       <DTS:Variables />
       <DTS:ObjectData>
         <pipeline
-          version="1" />
+          version="1">
+          <components>
+            <component
+              refId="Package\Dim_Sucursal\Combinación de mezcla"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+              name="Combinación de mezcla"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de combinación que se debe realizar."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de columnas de la clave de ordenación."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores NULL se tratan como valores iguales."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada izquierda de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[sucursal_id_transc]"
+                      cachedDataType="i8"
+                      cachedName="sucursal_id_transc"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[sucursal_id_transc]" />
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[sucursal_transc]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="sucursal_transc"
+                      lineageId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[sucursal_transc]" />
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[comuna_id_transc]"
+                      cachedDataType="i8"
+                      cachedName="comuna_id_transc"
+                      lineageId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[comuna_id_transc]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada derecha de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[Sucursal_Id_dim]"
+                      cachedDataType="i8"
+                      cachedName="Sucursal_Id_dim"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[Sucursal_Id_dim]" />
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[nombre_dim]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="nombre_dim"
+                      lineageId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[nombre_dim]" />
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[id_dim]"
+                      cachedDataType="i8"
+                      cachedName="id_dim"
+                      lineageId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[id_dim]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla]"
+                  isSorted="true"
+                  name="Salida de combinación de mezcla">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Sucursal_Id_dim]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Sucursal_Id_dim]"
+                      name="Sucursal_Id_dim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[Sucursal_Id_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[sucursal_id_transc]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[sucursal_id_transc]"
+                      name="sucursal_id_transc"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[sucursal_id_transc]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[sucursal_transc]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[sucursal_transc]"
+                      name="sucursal_transc">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[sucursal_transc]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre_dim]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre_dim]"
+                      name="nombre_dim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[nombre_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[comuna_id_transc]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[comuna_id_transc]"
+                      name="comuna_id_transc">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[comuna_id_transc]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_dim]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_dim]"
+                      name="id_dim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[id_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Sucursal\Conversión de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Dim_Sucursal\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[sucursal_id]"
+                      cachedDataType="i4"
+                      cachedName="sucursal_id"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[sucursal_id]" />
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[sucursal]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="sucursal"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[sucursal]" />
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[comuna_id]"
+                      cachedDataType="i4"
+                      cachedName="comuna_id"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[comuna_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Dim_Sucursal\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de conversión de datos].Columns[sucursal_id_transc]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de conversión de datos].Columns[sucursal_id_transc]"
+                      name="sucursal_id_transc"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[sucursal_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de conversión de datos].Columns[sucursal_transc]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="150"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de conversión de datos].Columns[sucursal_transc]"
+                      name="sucursal_transc"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[sucursal]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de conversión de datos].Columns[comuna_id_transc]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de conversión de datos].Columns[comuna_id_transc]"
+                      name="comuna_id_transc"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[comuna_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Dim_Sucursal\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Sucursal\Conversión de datos 1"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Dim_Sucursal\Conversión de datos 1.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos 1.Inputs[Entrada de conversión de datos].Columns[id]"
+                      cachedDataType="i8"
+                      cachedName="id"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[id]" />
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos 1.Inputs[Entrada de conversión de datos].Columns[Sucursal_Id]"
+                      cachedDataType="i8"
+                      cachedName="Sucursal_Id"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[Sucursal_Id]" />
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos 1.Inputs[Entrada de conversión de datos].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="nombre"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[nombre]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Dim_Sucursal\Conversión de datos 1.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de conversión de datos].Columns[id_dim]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de conversión de datos].Columns[id_dim]"
+                      name="id_dim"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de conversión de datos].Columns[Sucursal_Id_dim]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de conversión de datos].Columns[Sucursal_Id_dim]"
+                      name="Sucursal_Id_dim"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[Sucursal_Id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de conversión de datos].Columns[nombre_dim]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="150"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de conversión de datos].Columns[nombre_dim]"
+                      name="nombre_dim"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[nombre]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Dim_Sucursal\Conversión de datos 1.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Sucursal\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."dim_Sucursal"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Dim_Sucursal\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{541C258E-0F12-4C58-8CB3-897A25FB57FA}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.dim_Albarran]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Dim_Sucursal\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[sucursal_id_transc]"
+                      cachedDataType="i8"
+                      cachedName="sucursal_id_transc"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Dim_Sucursal\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      lineageId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[sucursal_id_transc]" />
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[sucursal_transc]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="sucursal_transc"
+                      externalMetadataColumnId="Package\Dim_Sucursal\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre]"
+                      lineageId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[sucursal_transc]" />
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[comuna_id_transc]"
+                      cachedDataType="i8"
+                      cachedName="comuna_id_transc"
+                      externalMetadataColumnId="Package\Dim_Sucursal\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[comuna_id]"
+                      lineageId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[comuna_id_transc]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Dim_Sucursal\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      dataType="i8"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Sucursal\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="150"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Sucursal\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[comuna_id]"
+                      dataType="i8"
+                      name="comuna_id" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Sucursal\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Dim_Sucursal\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Sucursal\División condicional"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="División condicional"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Dim_Sucursal\División condicional.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\División condicional.Inputs[Entrada de división condicional].Columns[Sucursal_Id_dim]"
+                      cachedDataType="i8"
+                      cachedName="Sucursal_Id_dim"
+                      lineageId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Sucursal_Id_dim]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Sucursal\División condicional.Outputs[Nuevo registro]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Nuevo registro"
+                  synchronousInputId="Package\Dim_Sucursal\División condicional.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">[ISNULL](#{Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Sucursal_Id_dim]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(Sucursal_Id_dim)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Dim_Sucursal\División condicional.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Dim_Sucursal\División condicional.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Dim_Sucursal\División condicional.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Dim_Sucursal\División condicional.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Sucursal\Ordenar"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Dim_Sucursal\Ordenar.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Ordenar.Inputs[Entrada de ordenación].Columns[sucursal_id]"
+                      cachedDataType="i4"
+                      cachedName="sucursal_id"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[sucursal_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Ordenar.Inputs[Entrada de ordenación].Columns[sucursal]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="sucursal"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[sucursal]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Ordenar.Inputs[Entrada de ordenación].Columns[comuna_id]"
+                      cachedDataType="i4"
+                      cachedName="comuna_id"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[comuna_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Ordenar.Inputs[Entrada de ordenación].Columns[sucursal_id_transc]"
+                      cachedDataType="i8"
+                      cachedName="sucursal_id_transc"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de conversión de datos].Columns[sucursal_id_transc]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Ordenar.Inputs[Entrada de ordenación].Columns[sucursal_transc]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="sucursal_transc"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de conversión de datos].Columns[sucursal_transc]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Ordenar.Inputs[Entrada de ordenación].Columns[comuna_id_transc]"
+                      cachedDataType="i8"
+                      cachedName="comuna_id_transc"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de conversión de datos].Columns[comuna_id_transc]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[sucursal_id]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[sucursal_id]"
+                      name="sucursal_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[sucursal_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[sucursal]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[sucursal]"
+                      name="sucursal">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[sucursal]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[comuna_id]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[comuna_id]"
+                      name="comuna_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[comuna_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[sucursal_id_transc]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[sucursal_id_transc]"
+                      name="sucursal_id_transc"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de conversión de datos].Columns[sucursal_id_transc]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[sucursal_transc]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[sucursal_transc]"
+                      name="sucursal_transc">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de conversión de datos].Columns[sucursal_transc]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[comuna_id_transc]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación].Columns[comuna_id_transc]"
+                      name="comuna_id_transc">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de conversión de datos].Columns[comuna_id_transc]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Sucursal\Ordenar 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Dim_Sucursal\Ordenar 1.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Ordenar 1.Inputs[Entrada de ordenación].Columns[id]"
+                      cachedDataType="i8"
+                      cachedName="id"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Ordenar 1.Inputs[Entrada de ordenación].Columns[Sucursal_Id]"
+                      cachedDataType="i8"
+                      cachedName="Sucursal_Id"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[Sucursal_Id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Ordenar 1.Inputs[Entrada de ordenación].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="nombre"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[nombre]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Ordenar 1.Inputs[Entrada de ordenación].Columns[id_dim]"
+                      cachedDataType="i8"
+                      cachedName="id_dim"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de conversión de datos].Columns[id_dim]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Ordenar 1.Inputs[Entrada de ordenación].Columns[Sucursal_Id_dim]"
+                      cachedDataType="i8"
+                      cachedName="Sucursal_Id_dim"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de conversión de datos].Columns[Sucursal_Id_dim]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Sucursal\Ordenar 1.Inputs[Entrada de ordenación].Columns[nombre_dim]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="nombre_dim"
+                      lineageId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de conversión de datos].Columns[nombre_dim]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[id]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[id]"
+                      name="id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[Sucursal_Id]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[Sucursal_Id]"
+                      name="Sucursal_Id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[Sucursal_Id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[nombre]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[nombre]"
+                      name="nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[id_dim]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[id_dim]"
+                      name="id_dim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de conversión de datos].Columns[id_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[Sucursal_Id_dim]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[Sucursal_Id_dim]"
+                      name="Sucursal_Id_dim"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de conversión de datos].Columns[Sucursal_Id_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[nombre_dim]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación].Columns[nombre_dim]"
+                      name="nombre_dim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de conversión de datos].Columns[nombre_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Sucursal\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        sucursales.sucursal_id, sucursales.sucursal, comunas.comuna_id 
+FROM            sucursales INNER JOIN
+                         comunas ON sucursales.comuna_id = comunas.comuna_id</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Dim_Sucursal\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{3ABEB371-AA29-4A94-A289-5D0D6F5E7103}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Albarran]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[sucursal_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[sucursal_id]"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[sucursal_id]"
+                      name="sucursal_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[sucursal]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[sucursal]"
+                      length="255"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[sucursal]"
+                      name="sucursal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[comuna_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[comuna_id]"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[comuna_id]"
+                      name="comuna_id"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[sucursal_id]"
+                      dataType="i4"
+                      name="sucursal_id" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[sucursal]"
+                      dataType="wstr"
+                      length="255"
+                      name="sucursal" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[comuna_id]"
+                      dataType="i4"
+                      name="comuna_id" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[sucursal_id]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[sucursal_id]"
+                      name="sucursal_id" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[sucursal]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[sucursal]"
+                      name="sucursal" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[comuna_id]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[comuna_id]"
+                      name="comuna_id" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Sucursal\Origen de ADO NET 1"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET 1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        dim_Comuna.id, dim_Sucursal.id AS Sucursal_Id, dim_Sucursal.nombre
+FROM            dim_Comuna INNER JOIN
+                         dim_Sucursal ON dim_Comuna.id = dim_Sucursal.comuna_id</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Dim_Sucursal\Origen de ADO NET 1.Connections[IDbConnection]"
+                  connectionManagerID="{541C258E-0F12-4C58-8CB3-897A25FB57FA}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.dim_Albarran]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[id]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].ExternalColumns[id]"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[Sucursal_Id]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].ExternalColumns[Sucursal_Id]"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[Sucursal_Id]"
+                      name="Sucursal_Id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      length="150"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].ExternalColumns[id]"
+                      dataType="i8"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].ExternalColumns[Sucursal_Id]"
+                      dataType="i8"
+                      name="Sucursal_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="150"
+                      name="nombre" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de error de origen de ADO NET].Columns[id]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de error de origen de ADO NET].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de error de origen de ADO NET].Columns[Sucursal_Id]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de error de origen de ADO NET].Columns[Sucursal_Id]"
+                      name="Sucursal_Id" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      name="nombre" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Dim_Sucursal.Paths[Nuevo registro]"
+              endId="Package\Dim_Sucursal\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Nuevo registro"
+              startId="Package\Dim_Sucursal\División condicional.Outputs[Nuevo registro]" />
+            <path
+              refId="Package\Dim_Sucursal.Paths[Salida de combinación de mezcla]"
+              endId="Package\Dim_Sucursal\División condicional.Inputs[Entrada de división condicional]"
+              name="Salida de combinación de mezcla"
+              startId="Package\Dim_Sucursal\Combinación de mezcla.Outputs[Salida de combinación de mezcla]" />
+            <path
+              refId="Package\Dim_Sucursal.Paths[Salida de conversión de datos]"
+              endId="Package\Dim_Sucursal\Ordenar.Inputs[Entrada de ordenación]"
+              name="Salida de conversión de datos"
+              startId="Package\Dim_Sucursal\Conversión de datos.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Dim_Sucursal.Paths[Salida de conversión de datos1]"
+              endId="Package\Dim_Sucursal\Ordenar 1.Inputs[Entrada de ordenación]"
+              name="Salida de conversión de datos"
+              startId="Package\Dim_Sucursal\Conversión de datos 1.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Dim_Sucursal.Paths[Salida de ordenación]"
+              endId="Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Dim_Sucursal\Ordenar.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Dim_Sucursal.Paths[Salida de ordenación1]"
+              endId="Package\Dim_Sucursal\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Dim_Sucursal\Ordenar 1.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Dim_Sucursal.Paths[Salida de origen de ADO NET]"
+              endId="Package\Dim_Sucursal\Conversión de datos.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Dim_Sucursal\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\Dim_Sucursal.Paths[Salida de origen de ADO NET1]"
+              endId="Package\Dim_Sucursal\Conversión de datos 1.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Dim_Sucursal\Origen de ADO NET 1.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -5142,6 +6521,324 @@ FROM            productos INNER JOIN
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Dim_Producto\Destino Producto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Dim_Sucursal">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Dim_Sucursal\Origen de ADO NET"
+          TopLeft="167,90" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Dim_Sucursal\Origen de ADO NET 1"
+          TopLeft="532,93" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Dim_Sucursal\Conversión de datos"
+          TopLeft="221,211" />
+        <EdgeLayout
+          Id="Package\Dim_Sucursal.Paths[Salida de origen de ADO NET]"
+          TopLeft="253,132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55.5,79"
+              Start="0,0"
+              End="55.5,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.5"
+                    Point2="0,39.5"
+                    Point3="4,39.5" />
+                  <mssgle:LineSegment
+                    End="51.5,39.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="51.5,39.5"
+                    Point2="55.5,39.5"
+                    Point3="55.5,43.5" />
+                  <mssgle:LineSegment
+                    End="55.5,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Dim_Sucursal\Conversión de datos 1"
+          TopLeft="470,208" />
+        <EdgeLayout
+          Id="Package\Dim_Sucursal.Paths[Salida de origen de ADO NET1]"
+          TopLeft="622.5,135">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-60.5,73"
+              Start="0,0"
+              End="-60.5,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.5"
+                    Point2="0,36.5"
+                    Point3="-4,36.5" />
+                  <mssgle:LineSegment
+                    End="-56.5,36.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-56.5,36.5"
+                    Point2="-60.5,36.5"
+                    Point3="-60.5,40.5" />
+                  <mssgle:LineSegment
+                    End="-60.5,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="117,42"
+          Id="Package\Dim_Sucursal\Ordenar"
+          TopLeft="257,328" />
+        <EdgeLayout
+          Id="Package\Dim_Sucursal.Paths[Salida de conversión de datos]"
+          TopLeft="312,253">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,75"
+              Start="0,0"
+              End="0,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="126,42"
+          Id="Package\Dim_Sucursal\Ordenar 1"
+          TopLeft="501,332" />
+        <EdgeLayout
+          Id="Package\Dim_Sucursal.Paths[Salida de conversión de datos1]"
+          TopLeft="563,250">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,82"
+              Start="0,0"
+              End="0,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Dim_Sucursal\Combinación de mezcla"
+          TopLeft="319,444" />
+        <EdgeLayout
+          Id="Package\Dim_Sucursal.Paths[Salida de ordenación]"
+          TopLeft="315.5,370">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="68.1666666666667,74"
+              Start="0,0"
+              End="68.1666666666667,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.0292275574113" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.0292275574113"
+                    Point2="0,44.0292275574113"
+                    Point3="4,44.0292275574113" />
+                  <mssgle:LineSegment
+                    End="64.1666666666667,44.0292275574113" />
+                  <mssgle:CubicBezierSegment
+                    Point1="64.1666666666667,44.0292275574113"
+                    Point2="68.1666666666667,44.0292275574113"
+                    Point3="68.1666666666667,48.0292275574113" />
+                  <mssgle:LineSegment
+                    End="68.1666666666667,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Sucursal.Paths[Salida de ordenación1]"
+          TopLeft="564,374">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-119.666666666667,70"
+              Start="0,0"
+              End="-119.666666666667,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.6492693110647" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.6492693110647"
+                    Point2="0,41.6492693110647"
+                    Point3="-4,41.6492693110647" />
+                  <mssgle:LineSegment
+                    End="-115.666666666667,41.6492693110647" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-115.666666666667,41.6492693110647"
+                    Point2="-119.666666666667,41.6492693110647"
+                    Point3="-119.666666666667,45.6492693110647" />
+                  <mssgle:LineSegment
+                    End="-119.666666666667,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Dim_Sucursal\División condicional"
+          TopLeft="339,538" />
+        <EdgeLayout
+          Id="Package\Dim_Sucursal.Paths[Salida de combinación de mezcla]"
+          TopLeft="414,486">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.5,52"
+              Start="0,0"
+              End="10.5,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="4,26" />
+                  <mssgle:LineSegment
+                    End="6.5,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.5,26"
+                    Point2="10.5,26"
+                    Point3="10.5,30" />
+                  <mssgle:LineSegment
+                    End="10.5,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Dim_Sucursal\Destino de ADO NET"
+          TopLeft="345,633" />
+        <EdgeLayout
+          Id="Package\Dim_Sucursal.Paths[Nuevo registro]"
+          TopLeft="424.5,580">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.5,53"
+              Start="0,0"
+              End="8.5,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.5"
+                    Point2="0,26.5"
+                    Point3="4,26.5" />
+                  <mssgle:LineSegment
+                    End="4.5,26.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.5,26.5"
+                    Point2="8.5,26.5"
+                    Point3="8.5,30.5" />
+                  <mssgle:LineSegment
+                    End="8.5,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-28.52203125,31.5,65.5440625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim_Sucursal\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim_Sucursal\Origen de ADO NET 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim_Sucursal\Destino de ADO NET">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
