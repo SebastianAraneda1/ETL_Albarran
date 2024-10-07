@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{BB69FF04-2E88-48FB-AFD2-10FF7C3872C7}">
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{DA216C7F-98EE-4AAF-93B9-EBB3356A7503}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -2300,7 +2300,1607 @@ FROM     dim_Comuna</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <pipeline
-          version="1" />
+          version="1">
+          <components>
+            <component
+              refId="Package\Dim_Producto\Combinación de mezcla"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+              name="Combinación de mezcla"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de combinación que se debe realizar."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de columnas de la clave de ordenación."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores NULL se tratan como valores iguales."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada izquierda de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[producto_id_ctr]"
+                      cachedDataType="i8"
+                      cachedName="producto_id_ctr"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[producto_id_ctr]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[nombre_ctr]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="nombre_ctr"
+                      lineageId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[nombre_ctr]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[precio_ctr]"
+                      cachedDataType="i4"
+                      cachedName="precio_ctr"
+                      lineageId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[precio_ctr]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[descripcion_ctr]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="descripcion_ctr"
+                      lineageId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[descripcion_ctr]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[categoria_id_ctr]"
+                      cachedDataType="i8"
+                      cachedName="categoria_id_ctr"
+                      lineageId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[categoria_id_ctr]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada derecha de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[id_dim]"
+                      cachedDataType="i8"
+                      cachedName="id_dim"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[id_dim]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[nombre_dim]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="nombre_dim"
+                      lineageId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[nombre_dim]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[precio_dim]"
+                      cachedDataType="i4"
+                      cachedName="precio_dim"
+                      lineageId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[precio_dim]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[descripcion_dim]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="descripcion_dim"
+                      lineageId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[descripcion_dim]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[categoria_id_dim]"
+                      cachedDataType="i8"
+                      cachedName="categoria_id_dim"
+                      lineageId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[categoria_id_dim]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla]"
+                  isSorted="true"
+                  name="Salida de combinación de mezcla">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[producto_id_ctr]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[producto_id_ctr]"
+                      name="producto_id_ctr"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[producto_id_ctr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_dim]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_dim]"
+                      name="id_dim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[id_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre_ctr]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre_ctr]"
+                      name="nombre_ctr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[nombre_ctr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre_dim]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre_dim]"
+                      name="nombre_dim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[nombre_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[precio_ctr]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[precio_ctr]"
+                      name="precio_ctr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[precio_ctr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[precio_dim]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[precio_dim]"
+                      name="precio_dim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[precio_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[descripcion_ctr]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[descripcion_ctr]"
+                      name="descripcion_ctr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[descripcion_ctr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[descripcion_dim]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[descripcion_dim]"
+                      name="descripcion_dim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[descripcion_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[categoria_id_ctr]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[categoria_id_ctr]"
+                      name="categoria_id_ctr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[categoria_id_ctr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[categoria_id_dim]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[categoria_id_dim]"
+                      name="categoria_id_dim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[categoria_id_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Producto\Conversión dim_Producto"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión dim_Producto"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Dim_Producto\Conversión dim_Producto.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Conversión dim_Producto.Inputs[Entrada de conversión de datos].Columns[id]"
+                      cachedDataType="i8"
+                      cachedName="id"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[id]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Conversión dim_Producto.Inputs[Entrada de conversión de datos].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="nombre"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Conversión dim_Producto.Inputs[Entrada de conversión de datos].Columns[precio]"
+                      cachedDataType="i4"
+                      cachedName="precio"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[precio]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Conversión dim_Producto.Inputs[Entrada de conversión de datos].Columns[descripcion]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="descripcion"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[descripcion]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Conversión dim_Producto.Inputs[Entrada de conversión de datos].Columns[categoria_id]"
+                      cachedDataType="i8"
+                      cachedName="categoria_id"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[categoria_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Dim_Producto\Conversión dim_Producto.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[id_dim]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[id_dim]"
+                      name="id_dim"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[nombre_dim]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[nombre_dim]"
+                      name="nombre_dim"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[nombre]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[precio_dim]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[precio_dim]"
+                      name="precio_dim"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[precio]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[descripcion_dim]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[descripcion_dim]"
+                      name="descripcion_dim"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[descripcion]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[categoria_id_dim]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[categoria_id_dim]"
+                      name="categoria_id_dim"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[categoria_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Dim_Producto\Conversión dim_Producto.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Producto\Conversión Producto"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión Producto"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Dim_Producto\Conversión Producto.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Conversión Producto.Inputs[Entrada de conversión de datos].Columns[producto_id]"
+                      cachedDataType="i4"
+                      cachedName="producto_id"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[producto_id]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Conversión Producto.Inputs[Entrada de conversión de datos].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Conversión Producto.Inputs[Entrada de conversión de datos].Columns[precio]"
+                      cachedDataType="i4"
+                      cachedName="precio"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[precio]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Conversión Producto.Inputs[Entrada de conversión de datos].Columns[descripcion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="descripcion"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[descripcion]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Conversión Producto.Inputs[Entrada de conversión de datos].Columns[categoria_id]"
+                      cachedDataType="i4"
+                      cachedName="categoria_id"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[categoria_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Dim_Producto\Conversión Producto.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[producto_id_ctr]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[producto_id_ctr]"
+                      name="producto_id_ctr"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[producto_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[nombre_ctr]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[nombre_ctr]"
+                      name="nombre_ctr"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[nombre]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[precio_ctr]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[precio_ctr]"
+                      name="precio_ctr"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[precio]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[descripcion_ctr]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[descripcion_ctr]"
+                      name="descripcion_ctr"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[descripcion]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[categoria_id_ctr]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[categoria_id_ctr]"
+                      name="categoria_id_ctr"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[categoria_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Dim_Producto\Conversión Producto.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Producto\Destino Producto"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino Producto"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."dim_Producto"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Dim_Producto\Destino Producto.Connections[IDbConnection]"
+                  connectionManagerID="{541C258E-0F12-4C58-8CB3-897A25FB57FA}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.dim_Albarran]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].Columns[producto_id_ctr]"
+                      cachedDataType="i8"
+                      cachedName="producto_id_ctr"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[producto_id_ctr]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].Columns[nombre_ctr]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="nombre_ctr"
+                      externalMetadataColumnId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre]"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre_ctr]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].Columns[precio_ctr]"
+                      cachedDataType="i4"
+                      cachedName="precio_ctr"
+                      externalMetadataColumnId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio]"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[precio_ctr]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].Columns[descripcion_ctr]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="descripcion_ctr"
+                      externalMetadataColumnId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[descripcion]"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[descripcion_ctr]" />
+                    <inputColumn
+                      refId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].Columns[categoria_id_ctr]"
+                      cachedDataType="i8"
+                      cachedName="categoria_id_ctr"
+                      externalMetadataColumnId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[categoria_id]"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[categoria_id_ctr]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      dataType="i8"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="250"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio]"
+                      dataType="i4"
+                      name="precio" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[descripcion]"
+                      dataType="wstr"
+                      length="250"
+                      name="descripcion" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET].ExternalColumns[categoria_id]"
+                      dataType="i8"
+                      name="categoria_id" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Producto\Destino Producto.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Destino Producto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Destino Producto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Destino Producto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Destino Producto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Producto\División condicional"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="División condicional"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Dim_Producto\División condicional.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Producto\División condicional.Inputs[Entrada de división condicional].Columns[id_dim]"
+                      cachedDataType="i8"
+                      cachedName="id_dim"
+                      lineageId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_dim]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Producto\División condicional.Outputs[Nuevo Registro]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Nuevo Registro"
+                  synchronousInputId="Package\Dim_Producto\División condicional.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">[ISNULL](#{Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_dim]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(id_dim)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Dim_Producto\División condicional.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Dim_Producto\División condicional.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Dim_Producto\División condicional.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Dim_Producto\División condicional.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Producto\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Producto\Ordenar dim_Producto"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar dim_Producto"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Dim_Producto\Ordenar dim_Producto.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Ordenar dim_Producto.Inputs[Entrada de ordenación].Columns[id_dim]"
+                      cachedDataType="i8"
+                      cachedName="id_dim"
+                      lineageId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[id_dim]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Ordenar dim_Producto.Inputs[Entrada de ordenación].Columns[nombre_dim]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="nombre_dim"
+                      lineageId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[nombre_dim]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Ordenar dim_Producto.Inputs[Entrada de ordenación].Columns[precio_dim]"
+                      cachedDataType="i4"
+                      cachedName="precio_dim"
+                      lineageId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[precio_dim]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Ordenar dim_Producto.Inputs[Entrada de ordenación].Columns[descripcion_dim]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="descripcion_dim"
+                      lineageId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[descripcion_dim]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Ordenar dim_Producto.Inputs[Entrada de ordenación].Columns[categoria_id_dim]"
+                      cachedDataType="i8"
+                      cachedName="categoria_id_dim"
+                      lineageId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[categoria_id_dim]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[id_dim]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[id_dim]"
+                      name="id_dim"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[id_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[nombre_dim]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[nombre_dim]"
+                      name="nombre_dim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[nombre_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[precio_dim]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[precio_dim]"
+                      name="precio_dim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[precio_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[descripcion_dim]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[descripcion_dim]"
+                      name="descripcion_dim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[descripcion_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[categoria_id_dim]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación].Columns[categoria_id_dim]"
+                      name="categoria_id_dim">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos].Columns[categoria_id_dim]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Producto\Ordenar Producto"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar Producto"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Dim_Producto\Ordenar Producto.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Ordenar Producto.Inputs[Entrada de ordenación].Columns[producto_id_ctr]"
+                      cachedDataType="i8"
+                      cachedName="producto_id_ctr"
+                      lineageId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[producto_id_ctr]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Ordenar Producto.Inputs[Entrada de ordenación].Columns[nombre_ctr]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="nombre_ctr"
+                      lineageId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[nombre_ctr]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Ordenar Producto.Inputs[Entrada de ordenación].Columns[precio_ctr]"
+                      cachedDataType="i4"
+                      cachedName="precio_ctr"
+                      lineageId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[precio_ctr]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Ordenar Producto.Inputs[Entrada de ordenación].Columns[descripcion_ctr]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="descripcion_ctr"
+                      lineageId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[descripcion_ctr]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Dim_Producto\Ordenar Producto.Inputs[Entrada de ordenación].Columns[categoria_id_ctr]"
+                      cachedDataType="i8"
+                      cachedName="categoria_id_ctr"
+                      lineageId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[categoria_id_ctr]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[producto_id_ctr]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[producto_id_ctr]"
+                      name="producto_id_ctr"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[producto_id_ctr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[nombre_ctr]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[nombre_ctr]"
+                      name="nombre_ctr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[nombre_ctr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[precio_ctr]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[precio_ctr]"
+                      name="precio_ctr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[precio_ctr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[descripcion_ctr]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[descripcion_ctr]"
+                      name="descripcion_ctr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[descripcion_ctr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[categoria_id_ctr]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación].Columns[categoria_id_ctr]"
+                      name="categoria_id_ctr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos].Columns[categoria_id_ctr]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Producto\Origen dim_Producto"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen dim_Producto"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        id, nombre, precio, descripcion, categoria_id
+FROM            dim_Producto</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Dim_Producto\Origen dim_Producto.Connections[IDbConnection]"
+                  connectionManagerID="{541C258E-0F12-4C58-8CB3-897A25FB57FA}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.dim_Albarran]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[id]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[id]"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[precio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[precio]"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[precio]"
+                      name="precio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[descripcion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[descripcion]"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[descripcion]"
+                      name="descripcion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[categoria_id]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[categoria_id]"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].Columns[categoria_id]"
+                      name="categoria_id"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[id]"
+                      dataType="i8"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="250"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[precio]"
+                      dataType="i4"
+                      name="precio" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[descripcion]"
+                      dataType="wstr"
+                      length="250"
+                      name="descripcion" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[categoria_id]"
+                      dataType="i8"
+                      name="categoria_id" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET].Columns[id]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      name="nombre" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET].Columns[precio]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET].Columns[precio]"
+                      name="precio" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET].Columns[descripcion]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET].Columns[descripcion]"
+                      name="descripcion" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET].Columns[categoria_id]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET].Columns[categoria_id]"
+                      name="categoria_id" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Producto\Origen Producto"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen Producto"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        productos.producto_id, productos.nombre, productos.precio, productos.descripcion, categorias.categoria_id
+FROM            productos INNER JOIN
+                         categorias ON productos.categoria_id = categorias.categoria_id</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Dim_Producto\Origen Producto.Connections[IDbConnection]"
+                  connectionManagerID="{3ABEB371-AA29-4A94-A289-5D0D6F5E7103}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Albarran]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[producto_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[producto_id]"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[producto_id]"
+                      name="producto_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      length="255"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[precio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[precio]"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[precio]"
+                      name="precio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[descripcion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[descripcion]"
+                      length="255"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[descripcion]"
+                      name="descripcion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[categoria_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[categoria_id]"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].Columns[categoria_id]"
+                      name="categoria_id"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[producto_id]"
+                      dataType="i4"
+                      name="producto_id" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="255"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[precio]"
+                      dataType="i4"
+                      name="precio" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[descripcion]"
+                      dataType="wstr"
+                      length="255"
+                      name="descripcion" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET].ExternalColumns[categoria_id]"
+                      dataType="i4"
+                      name="categoria_id" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET].Columns[producto_id]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET].Columns[producto_id]"
+                      name="producto_id" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      name="nombre" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET].Columns[precio]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET].Columns[precio]"
+                      name="precio" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET].Columns[descripcion]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET].Columns[descripcion]"
+                      name="descripcion" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET].Columns[categoria_id]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET].Columns[categoria_id]"
+                      name="categoria_id" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Producto\Origen Producto.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Dim_Producto.Paths[Nuevo Registro]"
+              endId="Package\Dim_Producto\Destino Producto.Inputs[Entrada de destino de ADO NET]"
+              name="Nuevo Registro"
+              startId="Package\Dim_Producto\División condicional.Outputs[Nuevo Registro]" />
+            <path
+              refId="Package\Dim_Producto.Paths[Salida de combinación de mezcla]"
+              endId="Package\Dim_Producto\División condicional.Inputs[Entrada de división condicional]"
+              name="Salida de combinación de mezcla"
+              startId="Package\Dim_Producto\Combinación de mezcla.Outputs[Salida de combinación de mezcla]" />
+            <path
+              refId="Package\Dim_Producto.Paths[Salida de conversión de datos]"
+              endId="Package\Dim_Producto\Ordenar Producto.Inputs[Entrada de ordenación]"
+              name="Salida de conversión de datos"
+              startId="Package\Dim_Producto\Conversión Producto.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Dim_Producto.Paths[Salida de conversión de datos1]"
+              endId="Package\Dim_Producto\Ordenar dim_Producto.Inputs[Entrada de ordenación]"
+              name="Salida de conversión de datos"
+              startId="Package\Dim_Producto\Conversión dim_Producto.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Dim_Producto.Paths[Salida de ordenación]"
+              endId="Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Dim_Producto\Ordenar Producto.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Dim_Producto.Paths[Salida de ordenación1]"
+              endId="Package\Dim_Producto\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Dim_Producto\Ordenar dim_Producto.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Dim_Producto.Paths[Salida de origen de ADO NET]"
+              endId="Package\Dim_Producto\Conversión Producto.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Dim_Producto\Origen Producto.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\Dim_Producto.Paths[Salida de origen de ADO NET1]"
+              endId="Package\Dim_Producto\Conversión dim_Producto.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Dim_Producto\Origen dim_Producto.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -2428,39 +4028,39 @@ FROM     dim_Comuna</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="128.8,41.6"
+          Size="129,42"
           Id="Package\Dim_Canal"
           TopLeft="255,278" />
         <NodeLayout
-          Size="148,41.6"
+          Size="148,42"
           Id="Package\Dim_Categoria"
           TopLeft="30,0.799999958674107" />
         <NodeLayout
-          Size="135.2,41.6"
+          Size="135,42"
           Id="Package\Dim_Cliente"
           TopLeft="441,478" />
         <NodeLayout
-          Size="142.4,41.6"
+          Size="142,42"
           Id="Package\Dim_Comuna"
           TopLeft="84.3333332008786,75.3999999793371" />
         <NodeLayout
-          Size="156,41.6"
+          Size="156,42"
           Id="Package\Dim_Fact_Venta"
           TopLeft="489,549" />
         <NodeLayout
-          Size="144.8,41.6"
+          Size="145,42"
           Id="Package\Dim_Producto"
           TopLeft="135,144" />
         <NodeLayout
-          Size="143.2,41.6"
+          Size="143,42"
           Id="Package\Dim_Sucursal"
           TopLeft="195,212" />
         <NodeLayout
-          Size="137.6,41.6"
+          Size="138,42"
           Id="Package\Dim_Tiempo"
           TopLeft="307,346" />
         <NodeLayout
-          Size="148,41.6"
+          Size="148,42"
           Id="Package\Dim_Vendedor"
           TopLeft="357,411" />
         <EdgeLayout
@@ -2499,30 +4099,30 @@ FROM     dim_Comuna</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="155.533333200879,116.999999979337">
+          TopLeft="155.333333200879,117.399999979337">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="51.8666667991214,27.0000000206629"
+              EndConnector="52.1666667991214,26.6000000206629"
               Start="0,0"
-              End="51.8666667991214,19.5000000206629">
+              End="52.1666667991214,19.1000000206629">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,9.50000001033146" />
+                    End="0,9.30000001033145" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,9.50000001033146"
-                    Point2="0,13.5000000103315"
-                    Point3="4,13.5000000103315" />
+                    Point1="0,9.30000001033145"
+                    Point2="0,13.3000000103315"
+                    Point3="4,13.3000000103315" />
                   <mssgle:LineSegment
-                    End="47.8666667991214,13.5000000103315" />
+                    End="48.1666667991214,13.3000000103315" />
                   <mssgle:CubicBezierSegment
-                    Point1="47.8666667991214,13.5000000103315"
-                    Point2="51.8666667991214,13.5000000103315"
-                    Point3="51.8666667991214,17.5000000103315" />
+                    Point1="48.1666667991214,13.3000000103315"
+                    Point2="52.1666667991214,13.3000000103315"
+                    Point3="52.1666667991214,17.3000000103315" />
                   <mssgle:LineSegment
-                    End="51.8666667991214,19.5000000206629" />
+                    End="52.1666667991214,19.1000000206629" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2744,107 +4344,41 @@ FROM     dim_Comuna</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="119.2,41.6"
-          Id="Package\Dim_Categoria\Sort DIM"
-          TopLeft="446.041648942564,227.933335144784" />
-        <NodeLayout
-          Size="156,41.6"
+          Size="156,42"
           Id="Package\Dim_Categoria\Data Conversion"
           TopLeft="132.499994734923,160.600001177788" />
         <NodeLayout
-          Size="177.6,41.6"
+          Size="178,42"
           Id="Package\Dim_Categoria\Data Conversion DIM"
           TopLeft="414.999983509383,156.650001244942" />
         <NodeLayout
-          Size="157.6,41.6"
-          Id="Package\Dim_Categoria\Origen Categoria"
-          TopLeft="128.95832820899,63.7000005062422" />
-        <NodeLayout
-          Size="226.4,41.6"
-          Id="Package\Dim_Categoria\Insertar datos en dim_Categoria"
-          TopLeft="253.541656591827,474.283337102599" />
-        <NodeLayout
-          Size="182.4,41.6"
+          Size="182,42"
           Id="Package\Dim_Categoria\Origen DIM_Categoria"
           TopLeft="409.166650407845,65.6500005217393" />
         <NodeLayout
-          Size="129.6,41.6"
+          Size="158,42"
+          Id="Package\Dim_Categoria\Origen Categoria"
+          TopLeft="128.95832820899,63.7000005062422" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\Dim_Categoria\Insertar datos en dim_Categoria"
+          TopLeft="253.541656591827,474.283337102599" />
+        <NodeLayout
+          Size="119,42"
+          Id="Package\Dim_Categoria\Sort DIM"
+          TopLeft="446.041648942564,227.933335144784" />
+        <NodeLayout
+          Size="130,42"
           Id="Package\Dim_Categoria\Merge Join"
           TopLeft="299.999988079072,305.03333567169" />
         <NodeLayout
-          Size="97.6,41.6"
-          Id="Package\Dim_Categoria\Sort"
-          TopLeft="156.666660441293,230.10000182867" />
-        <NodeLayout
-          Size="153.6,41.6"
+          Size="154,42"
           Id="Package\Dim_Categoria\Conditional Split"
           TopLeft="295.833321577973,385.883336400059" />
-        <EdgeLayout
-          Id="Package\Dim_Categoria.Paths[Merge Join Output]"
-          TopLeft="368.716654828522,346.63333567169">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,39.2500007283686"
-              Start="0,0"
-              End="0,31.7500007283686">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.7500007283686" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_Categoria.Paths[Data Conversion Output1]"
-          TopLeft="207.983327588108,202.200001177788">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,27.9000006508824"
-              Start="0,0"
-              End="0,20.4000006508824">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.4000006508824" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_Categoria.Paths[Data Conversion Output]"
-          TopLeft="504.720816225973,198.250001244942">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,29.6833338998424"
-              Start="0,0"
-              End="0,22.1833338998424">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22.1833338998424" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="98,42"
+          Id="Package\Dim_Categoria\Sort"
+          TopLeft="156.666660441293,230.10000182867" />
         <EdgeLayout
           Id="Package\Dim_Categoria.Paths[Sort Output1]"
           TopLeft="505.641648942564,269.533335144784">
@@ -2981,9 +4515,83 @@ FROM     dim_Comuna</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Categoria.Paths[Merge Join Output]"
+          TopLeft="368.716654828522,346.63333567169">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.2500007283686"
+              Start="0,0"
+              End="0,31.7500007283686">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.7500007283686" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Categoria.Paths[Data Conversion Output1]"
+          TopLeft="207.983327588108,202.200001177788">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.9000006508824"
+              Start="0,0"
+              End="0,20.4000006508824">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4000006508824" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Categoria.Paths[Data Conversion Output]"
+          TopLeft="504.720816225973,198.250001244942">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.6833338998424"
+              Start="0,0"
+              End="0,22.1833338998424">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.1833338998424" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim_Categoria\Origen DIM_Categoria">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Dim_Categoria\Origen Categoria">
     <Properties>
@@ -3000,135 +4608,47 @@ FROM     dim_Comuna</property>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Dim_Categoria\Origen DIM_Categoria">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Dim_Comuna">
     <LayoutInfo>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="152,41.6"
-          Id="Package\Dim_Comuna\Origen Comuna"
-          TopLeft="143,33" />
+          Size="156,42"
+          Id="Package\Dim_Comuna\Data Conversion"
+          TopLeft="135,114" />
         <NodeLayout
-          Size="173.6,41.6"
+          Size="178,42"
+          Id="Package\Dim_Comuna\Data Conversion DIM"
+          TopLeft="428,117" />
+        <NodeLayout
+          Size="174,42"
           Id="Package\Dim_Comuna\Origen DIM Comuna"
           TopLeft="429,33" />
         <NodeLayout
-          Size="156,41.6"
-          Id="Package\Dim_Comuna\Data Conversion"
-          TopLeft="135,114" />
-        <EdgeLayout
-          Id="Package\Dim_Comuna.Paths[Salida de origen de ADO NET]"
-          TopLeft="216,74.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,39.4"
-              Start="0,0"
-              End="0,31.9">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.9" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="152,42"
+          Id="Package\Dim_Comuna\Origen Comuna"
+          TopLeft="143,33" />
         <NodeLayout
-          Size="177.6,41.6"
-          Id="Package\Dim_Comuna\Data Conversion DIM"
-          TopLeft="428,117" />
-        <EdgeLayout
-          Id="Package\Dim_Comuna.Paths[Salida de origen de ADO NET1]"
-          TopLeft="516.3,74.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,42.4"
-              Start="0,0"
-              End="0,34.9">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,34.9" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="222,42"
+          Id="Package\Dim_Comuna\Insertar Datos en dim_Comuna"
+          TopLeft="251,443" />
         <NodeLayout
-          Size="97.6,41.6"
-          Id="Package\Dim_Comuna\Sort"
-          TopLeft="162,201" />
-        <EdgeLayout
-          Id="Package\Dim_Comuna.Paths[Data Conversion Output]"
-          TopLeft="211.9,155.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,45.4"
-              Start="0,0"
-              End="0,37.9">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,37.9" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="119.2,41.6"
-          Id="Package\Dim_Comuna\Sort DIM"
-          TopLeft="459,203" />
-        <EdgeLayout
-          Id="Package\Dim_Comuna.Paths[Data Conversion Output1]"
-          TopLeft="517.7,158.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,44.4000000000001"
-              Start="0,0"
-              End="0,36.9000000000001">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,36.9000000000001" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="129.6,41.6"
+          Size="130,42"
           Id="Package\Dim_Comuna\Merge Join"
           TopLeft="294,286" />
+        <NodeLayout
+          Size="119,42"
+          Id="Package\Dim_Comuna\Sort DIM"
+          TopLeft="459,203" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Dim_Comuna\Conditional Split"
+          TopLeft="285,360" />
+        <NodeLayout
+          Size="98,42"
+          Id="Package\Dim_Comuna\Sort"
+          TopLeft="162,201" />
         <EdgeLayout
           Id="Package\Dim_Comuna.Paths[Sort Output]"
           TopLeft="210.8,242.6">
@@ -3155,6 +4675,140 @@ FROM     dim_Comuna</property>
                     Point3="127.733333333333,29.7224390243902" />
                   <mssgle:LineSegment
                     End="127.733333333333,35.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Comuna.Paths[Salida de origen de ADO NET1]"
+          TopLeft="516.3,74.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.4"
+              Start="0,0"
+              End="0,34.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Comuna.Paths[Salida de origen de ADO NET]"
+          TopLeft="216,74.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.4"
+              Start="0,0"
+              End="0,31.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Comuna.Paths[Nuevo Registro]"
+          TopLeft="362,401.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.4"
+              Start="0,0"
+              End="0,33.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-34.07703125,11.2576171875,68.1540625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Comuna.Paths[Merge Join Output]"
+          TopLeft="360.3,327.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.3999999999999"
+              Start="0,0"
+              End="0,24.8999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.8999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Comuna.Paths[Data Conversion Output1]"
+          TopLeft="517.7,158.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.4000000000001"
+              Start="0,0"
+              End="0,36.9000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.9000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Comuna.Paths[Data Conversion Output]"
+          TopLeft="211.9,155.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.4"
+              Start="0,0"
+              End="0,37.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.9" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3197,71 +4851,9 @@ FROM     dim_Comuna</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="153.6,41.6"
-          Id="Package\Dim_Comuna\Conditional Split"
-          TopLeft="285,360" />
-        <EdgeLayout
-          Id="Package\Dim_Comuna.Paths[Merge Join Output]"
-          TopLeft="360.3,327.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,32.3999999999999"
-              Start="0,0"
-              End="0,24.8999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24.8999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="222.4,41.6"
-          Id="Package\Dim_Comuna\Insertar Datos en dim_Comuna"
-          TopLeft="251,443" />
-        <EdgeLayout
-          Id="Package\Dim_Comuna.Paths[Nuevo Registro]"
-          TopLeft="362,401.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,41.4"
-              Start="0,0"
-              End="0,33.9">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,33.9" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-34.07703125,11.2576171875,68.1540625,11.384765625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Dim_Comuna\Origen Comuna">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Dim_Comuna\Origen DIM Comuna">
     <Properties>
@@ -3271,7 +4863,285 @@ FROM     dim_Comuna</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\Dim_Comuna\Origen Comuna">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Dim_Comuna\Insertar Datos en dim_Comuna">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Dim_Producto">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Dim_Producto\Origen Producto"
+          TopLeft="188,65" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Dim_Producto\Origen dim_Producto"
+          TopLeft="559,73" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Dim_Producto\Conversión Producto"
+          TopLeft="180,160" />
+        <EdgeLayout
+          Id="Package\Dim_Producto.Paths[Salida de origen de ADO NET]"
+          TopLeft="266.75,107">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Dim_Producto\Conversión dim_Producto"
+          TopLeft="551,159" />
+        <EdgeLayout
+          Id="Package\Dim_Producto.Paths[Salida de origen de ADO NET1]"
+          TopLeft="649.25,115">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Dim_Producto\Ordenar Producto"
+          TopLeft="187,248" />
+        <EdgeLayout
+          Id="Package\Dim_Producto.Paths[Salida de conversión de datos]"
+          TopLeft="268,202">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Dim_Producto\Ordenar dim_Producto"
+          TopLeft="554,253" />
+        <EdgeLayout
+          Id="Package\Dim_Producto.Paths[Salida de conversión de datos1]"
+          TopLeft="648.5,201">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Dim_Producto\Combinación de mezcla"
+          TopLeft="348,367" />
+        <EdgeLayout
+          Id="Package\Dim_Producto.Paths[Salida de ordenación]"
+          TopLeft="268,290">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="148,77"
+              Start="0,0"
+              End="148,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,44.5"
+                    Point2="0,48.5"
+                    Point3="4,48.5" />
+                  <mssgle:LineSegment
+                    End="144,48.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="144,48.5"
+                    Point2="148,48.5"
+                    Point3="148,52.5" />
+                  <mssgle:LineSegment
+                    End="148,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Producto.Paths[Salida de ordenación1]"
+          TopLeft="646.5,295">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-173.166666666667,72"
+              Start="0,0"
+              End="-173.166666666667,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.839248434238" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.839248434238"
+                    Point2="0,42.839248434238"
+                    Point3="-4,42.839248434238" />
+                  <mssgle:LineSegment
+                    End="-169.166666666667,42.839248434238" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-169.166666666667,42.839248434238"
+                    Point2="-173.166666666667,42.839248434238"
+                    Point3="-173.166666666667,46.839248434238" />
+                  <mssgle:LineSegment
+                    End="-173.166666666667,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Dim_Producto\División condicional"
+          TopLeft="358,442" />
+        <EdgeLayout
+          Id="Package\Dim_Producto.Paths[Salida de combinación de mezcla]"
+          TopLeft="443.25,409">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Dim_Producto\Destino Producto"
+          TopLeft="361,528" />
+        <EdgeLayout
+          Id="Package\Dim_Producto.Paths[Nuevo Registro]"
+          TopLeft="442,484">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-34.07703125,12.5576171875,68.1540625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim_Producto\Origen Producto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim_Producto\Origen dim_Producto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim_Producto\Destino Producto">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
