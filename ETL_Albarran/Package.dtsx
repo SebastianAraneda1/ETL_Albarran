@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{AD0ED241-0DDE-470D-94C3-37587A9C2E51}">
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{C6CC9406-9707-4079-B317-94834D344BFC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -1157,10 +1157,23 @@ FROM     dim_Categoria</property>
                   name="Conditional Split Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_Comuna\Conditional Split.Inputs[Conditional Split Input].Columns[id_DIM]"
-                      cachedDataType="i8"
-                      cachedName="id_DIM"
-                      lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[id_DIM]" />
+                      refId="Package\Dim_Comuna\Conditional Split.Inputs[Conditional Split Input].Columns[comuna_id_TRSC]"
+                      cachedDataType="i4"
+                      cachedName="comuna_id_TRSC"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[comuna_id_TRSC]" />
+                    <inputColumn
+                      refId="Package\Dim_Comuna\Conditional Split.Inputs[Conditional Split Input].Columns[comuna_TRSC]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="comuna_TRSC"
+                      lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[comuna_TRSC]" />
+                    <inputColumn
+                      refId="Package\Dim_Comuna\Conditional Split.Inputs[Conditional Split Input].Columns[nombre_DIM]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="nombre_DIM"
+                      lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[nombre_DIM]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -1180,17 +1193,45 @@ FROM     dim_Categoria</property>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">[ISNULL](#{Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[id_DIM]})</property>
+                      name="Expression">[ISNULL](#{Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[comuna_id_TRSC]})</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the friendly version of the expression. This expression version uses column names."
                       expressionType="Notify"
-                      name="FriendlyExpression">ISNULL(id_DIM)</property>
+                      name="FriendlyExpression">ISNULL(comuna_id_TRSC)</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
                       name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Dim_Comuna\Conditional Split.Outputs[Modificacion]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Modificacion"
+                  synchronousInputId="Package\Dim_Comuna\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[comuna_TRSC]} != #{Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[nombre_DIM]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">comuna_TRSC != nombre_DIM</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
                   </properties>
                   <externalMetadataColumns />
                 </output>
@@ -1267,12 +1308,12 @@ FROM     dim_Categoria</property>
                   synchronousInputId="Package\Dim_Comuna\Data Conversion.Inputs[Data Conversion Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[id_str]"
-                      dataType="i8"
+                      refId="Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[comuna_id_TRSC]"
+                      dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[id_str]"
-                      name="id_str"
+                      lineageId="Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[comuna_id_TRSC]"
+                      name="comuna_id_TRSC"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -1287,13 +1328,13 @@ FROM     dim_Categoria</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[nombre_str]"
+                      refId="Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[comuna_TRSC]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="150"
-                      lineageId="Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[nombre_str]"
-                      name="nombre_str"
+                      lineageId="Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[comuna_TRSC]"
+                      name="comuna_TRSC"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -1370,7 +1411,7 @@ FROM     dim_Categoria</property>
                   <outputColumns>
                     <outputColumn
                       refId="Package\Dim_Comuna\Data Conversion DIM.Outputs[Data Conversion Output].Columns[id_DIM]"
-                      dataType="i8"
+                      dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       lineageId="Package\Dim_Comuna\Data Conversion DIM.Outputs[Data Conversion Output].Columns[id_DIM]"
@@ -1486,19 +1527,19 @@ FROM     dim_Categoria</property>
                   name="Entrada de destino de ADO NET">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_Comuna\Insertar Datos en dim_Comuna.Inputs[Entrada de destino de ADO NET].Columns[id_str]"
-                      cachedDataType="i8"
-                      cachedName="id_str"
+                      refId="Package\Dim_Comuna\Insertar Datos en dim_Comuna.Inputs[Entrada de destino de ADO NET].Columns[comuna_id_TRSC]"
+                      cachedDataType="i4"
+                      cachedName="comuna_id_TRSC"
                       cachedSortKeyPosition="1"
                       externalMetadataColumnId="Package\Dim_Comuna\Insertar Datos en dim_Comuna.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
-                      lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[id_str]" />
+                      lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[comuna_id_TRSC]" />
                     <inputColumn
-                      refId="Package\Dim_Comuna\Insertar Datos en dim_Comuna.Inputs[Entrada de destino de ADO NET].Columns[nombre_str]"
+                      refId="Package\Dim_Comuna\Insertar Datos en dim_Comuna.Inputs[Entrada de destino de ADO NET].Columns[comuna_TRSC]"
                       cachedDataType="wstr"
                       cachedLength="150"
-                      cachedName="nombre_str"
+                      cachedName="comuna_TRSC"
                       externalMetadataColumnId="Package\Dim_Comuna\Insertar Datos en dim_Comuna.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre]"
-                      lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[nombre_str]" />
+                      lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[comuna_TRSC]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1509,7 +1550,7 @@ FROM     dim_Categoria</property>
                     <externalMetadataColumn
                       refId="Package\Dim_Comuna\Insertar Datos en dim_Comuna.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre]"
                       dataType="wstr"
-                      length="150"
+                      length="255"
                       name="nombre" />
                   </externalMetadataColumns>
                 </input>
@@ -1572,17 +1613,17 @@ FROM     dim_Categoria</property>
                   name="Merge Join Left Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[id_str]"
-                      cachedDataType="i8"
-                      cachedName="id_str"
+                      refId="Package\Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[comuna_id_TRSC]"
+                      cachedDataType="i4"
+                      cachedName="comuna_id_TRSC"
                       cachedSortKeyPosition="1"
-                      lineageId="Package\Dim_Comuna\Sort.Outputs[Sort Output].Columns[id_str]" />
+                      lineageId="Package\Dim_Comuna\Sort.Outputs[Sort Output].Columns[comuna_id_TRSC]" />
                     <inputColumn
-                      refId="Package\Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[nombre_str]"
+                      refId="Package\Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[comuna_TRSC]"
                       cachedDataType="wstr"
                       cachedLength="150"
-                      cachedName="nombre_str"
-                      lineageId="Package\Dim_Comuna\Sort.Outputs[Sort Output].Columns[nombre_str]" />
+                      cachedName="comuna_TRSC"
+                      lineageId="Package\Dim_Comuna\Sort.Outputs[Sort Output].Columns[comuna_TRSC]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -1593,7 +1634,7 @@ FROM     dim_Categoria</property>
                   <inputColumns>
                     <inputColumn
                       refId="Package\Dim_Comuna\Merge Join.Inputs[Merge Join Right Input].Columns[id_DIM]"
-                      cachedDataType="i8"
+                      cachedDataType="i4"
                       cachedName="id_DIM"
                       cachedSortKeyPosition="1"
                       lineageId="Package\Dim_Comuna\Sort DIM.Outputs[Sort Output].Columns[id_DIM]" />
@@ -1614,36 +1655,36 @@ FROM     dim_Categoria</property>
                   name="Merge Join Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[id_str]"
-                      dataType="i8"
-                      lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[id_str]"
-                      name="id_str"
+                      refId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[comuna_id_TRSC]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[comuna_id_TRSC]"
+                      name="comuna_id_TRSC"
                       sortKeyPosition="1">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[id_str]}</property>
+                          name="InputColumnID">#{Package\Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[comuna_id_TRSC]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[nombre_str]"
+                      refId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[comuna_TRSC]"
                       dataType="wstr"
                       length="150"
-                      lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[nombre_str]"
-                      name="nombre_str">
+                      lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[comuna_TRSC]"
+                      name="comuna_TRSC">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[nombre_str]}</property>
+                          name="InputColumnID">#{Package\Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[comuna_TRSC]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
                       refId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[id_DIM]"
-                      dataType="i8"
+                      dataType="i4"
                       lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[id_DIM]"
                       name="id_DIM">
                       <properties>
@@ -1668,6 +1709,123 @@ FROM     dim_Categoria</property>
                           name="InputColumnID">#{Package\Dim_Comuna\Merge Join.Inputs[Merge Join Right Input].Columns[nombre_DIM]}</property>
                       </properties>
                     </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Comuna\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE dim_Comuna 
+SET nombre = ? 
+WHERE id =  ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Dim_Comuna\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{7EB8F9E8-84ED-4C20-B98B-B640A8C75B94}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AK0RL_SQLEXPRESS.dim_Albarran1 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Dim_Comuna\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Comuna\OLE DB Command.Inputs[OLE DB Command Input].Columns[comuna_TRSC]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="comuna_TRSC"
+                      externalMetadataColumnId="Package\Dim_Comuna\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[comuna_TRSC]" />
+                    <inputColumn
+                      refId="Package\Dim_Comuna\OLE DB Command.Inputs[OLE DB Command Input].Columns[comuna_id_TRSC]"
+                      cachedDataType="i4"
+                      cachedName="comuna_id_TRSC"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Dim_Comuna\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[comuna_id_TRSC]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Dim_Comuna\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Dim_Comuna\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i8"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Comuna\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Dim_Comuna\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Dim_Comuna\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Dim_Comuna\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Comuna\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Comuna\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Comuna\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Comuna\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -1966,10 +2124,10 @@ FROM     dim_Comuna</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Dim_Comuna\Sort.Inputs[Sort Input].Columns[id_str]"
-                      cachedDataType="i8"
-                      cachedName="id_str"
-                      lineageId="Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[id_str]">
+                      refId="Package\Dim_Comuna\Sort.Inputs[Sort Input].Columns[comuna_id_TRSC]"
+                      cachedDataType="i4"
+                      cachedName="comuna_id_TRSC"
+                      lineageId="Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[comuna_id_TRSC]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -1982,11 +2140,11 @@ FROM     dim_Comuna</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Dim_Comuna\Sort.Inputs[Sort Input].Columns[nombre_str]"
+                      refId="Package\Dim_Comuna\Sort.Inputs[Sort Input].Columns[comuna_TRSC]"
                       cachedDataType="wstr"
                       cachedLength="150"
-                      cachedName="nombre_str"
-                      lineageId="Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[nombre_str]">
+                      cachedName="comuna_TRSC"
+                      lineageId="Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[comuna_TRSC]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -2036,31 +2194,31 @@ FROM     dim_Comuna</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Dim_Comuna\Sort.Outputs[Sort Output].Columns[id_str]"
-                      dataType="i8"
-                      lineageId="Package\Dim_Comuna\Sort.Outputs[Sort Output].Columns[id_str]"
-                      name="id_str"
+                      refId="Package\Dim_Comuna\Sort.Outputs[Sort Output].Columns[comuna_id_TRSC]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Comuna\Sort.Outputs[Sort Output].Columns[comuna_id_TRSC]"
+                      name="comuna_id_TRSC"
                       sortKeyPosition="1">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[id_str]}</property>
+                          name="SortColumnId">#{Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[comuna_id_TRSC]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Dim_Comuna\Sort.Outputs[Sort Output].Columns[nombre_str]"
+                      refId="Package\Dim_Comuna\Sort.Outputs[Sort Output].Columns[comuna_TRSC]"
                       dataType="wstr"
                       length="150"
-                      lineageId="Package\Dim_Comuna\Sort.Outputs[Sort Output].Columns[nombre_str]"
-                      name="nombre_str">
+                      lineageId="Package\Dim_Comuna\Sort.Outputs[Sort Output].Columns[comuna_TRSC]"
+                      name="comuna_TRSC">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[nombre_str]}</property>
+                          name="SortColumnId">#{Package\Dim_Comuna\Data Conversion.Outputs[Data Conversion Output].Columns[comuna_TRSC]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -2126,7 +2284,7 @@ FROM     dim_Comuna</property>
                     </inputColumn>
                     <inputColumn
                       refId="Package\Dim_Comuna\Sort DIM.Inputs[Sort Input].Columns[id_DIM]"
-                      cachedDataType="i8"
+                      cachedDataType="i4"
                       cachedName="id_DIM"
                       lineageId="Package\Dim_Comuna\Data Conversion DIM.Outputs[Data Conversion Output].Columns[id_DIM]">
                       <properties>
@@ -2196,7 +2354,7 @@ FROM     dim_Comuna</property>
                     </outputColumn>
                     <outputColumn
                       refId="Package\Dim_Comuna\Sort DIM.Outputs[Sort Output].Columns[id_DIM]"
-                      dataType="i8"
+                      dataType="i4"
                       lineageId="Package\Dim_Comuna\Sort DIM.Outputs[Sort Output].Columns[id_DIM]"
                       name="id_DIM"
                       sortKeyPosition="1">
@@ -2244,6 +2402,11 @@ FROM     dim_Comuna</property>
               endId="Package\Dim_Comuna\Conditional Split.Inputs[Conditional Split Input]"
               name="Merge Join Output"
               startId="Package\Dim_Comuna\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Dim_Comuna.Paths[Modificacion]"
+              endId="Package\Dim_Comuna\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Modificacion"
+              startId="Package\Dim_Comuna\Conditional Split.Outputs[Modificacion]" />
             <path
               refId="Package\Dim_Comuna.Paths[Nuevo Registro]"
               endId="Package\Dim_Comuna\Insertar Datos en dim_Comuna.Inputs[Entrada de destino de ADO NET]"
@@ -6440,39 +6603,39 @@ FROM            dim_Comuna INNER JOIN
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="129,42"
+          Size="128.8,41.6"
           Id="Package\Dim_Canal"
           TopLeft="255,278" />
         <NodeLayout
-          Size="148,42"
+          Size="148,41.6"
           Id="Package\Dim_Categoria"
           TopLeft="30,0.799999958674107" />
         <NodeLayout
-          Size="135,42"
+          Size="135.2,41.6"
           Id="Package\Dim_Cliente"
           TopLeft="441,478" />
         <NodeLayout
-          Size="142,42"
+          Size="142.4,41.6"
           Id="Package\Dim_Comuna"
-          TopLeft="84.3333332008786,75.3999999793371" />
+          TopLeft="84.3333332008786,73.6666666322285" />
         <NodeLayout
-          Size="156,42"
+          Size="156,41.6"
           Id="Package\Dim_Fact_Venta"
           TopLeft="489,549" />
         <NodeLayout
-          Size="145,42"
+          Size="144.8,41.6"
           Id="Package\Dim_Producto"
           TopLeft="135,144" />
         <NodeLayout
-          Size="143,42"
+          Size="143.2,41.6"
           Id="Package\Dim_Sucursal"
           TopLeft="195,212" />
         <NodeLayout
-          Size="138,42"
+          Size="137.6,41.6"
           Id="Package\Dim_Tiempo"
           TopLeft="307,346" />
         <NodeLayout
-          Size="148,42"
+          Size="148,41.6"
           Id="Package\Dim_Vendedor"
           TopLeft="357,411" />
         <EdgeLayout
@@ -6481,26 +6644,26 @@ FROM            dim_Comuna INNER JOIN
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="51.5333332008786,33.000000020663"
+              EndConnector="51.5333332008786,31.2666666735544"
               Start="0,0"
-              End="51.5333332008786,25.500000020663">
+              End="51.5333332008786,23.7666666735544">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,12.5000000103315" />
+                    End="0,11.6333333367772" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,12.5000000103315"
-                    Point2="0,16.5000000103315"
-                    Point3="4,16.5000000103315" />
+                    Point1="0,11.6333333367772"
+                    Point2="0,15.6333333367772"
+                    Point3="4,15.6333333367772" />
                   <mssgle:LineSegment
-                    End="47.5333332008786,16.5000000103315" />
+                    End="47.5333332008786,15.6333333367772" />
                   <mssgle:CubicBezierSegment
-                    Point1="47.5333332008786,16.5000000103315"
-                    Point2="51.5333332008786,16.5000000103315"
-                    Point3="51.5333332008786,20.5000000103315" />
+                    Point1="47.5333332008786,15.6333333367772"
+                    Point2="51.5333332008786,15.6333333367772"
+                    Point3="51.5333332008786,19.6333333367772" />
                   <mssgle:LineSegment
-                    End="51.5333332008786,25.500000020663" />
+                    End="51.5333332008786,23.7666666735544" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6511,30 +6674,30 @@ FROM            dim_Comuna INNER JOIN
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="155.333333200879,117.399999979337">
+          TopLeft="155.533333200879,115.266666632228">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="52.1666667991214,26.6000000206629"
+              EndConnector="51.8666667991214,28.7333333677715"
               Start="0,0"
-              End="52.1666667991214,19.1000000206629">
+              End="51.8666667991214,21.2333333677715">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,9.30000001033145" />
+                    End="0,10.3666666838858" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,9.30000001033145"
-                    Point2="0,13.3000000103315"
-                    Point3="4,13.3000000103315" />
+                    Point1="0,10.3666666838858"
+                    Point2="0,14.3666666838858"
+                    Point3="4,14.3666666838858" />
                   <mssgle:LineSegment
-                    End="48.1666667991214,13.3000000103315" />
+                    End="47.8666667991214,14.3666666838858" />
                   <mssgle:CubicBezierSegment
-                    Point1="48.1666667991214,13.3000000103315"
-                    Point2="52.1666667991214,13.3000000103315"
-                    Point3="52.1666667991214,17.3000000103315" />
+                    Point1="47.8666667991214,14.3666666838858"
+                    Point2="51.8666667991214,14.3666666838858"
+                    Point3="51.8666667991214,18.3666666838858" />
                   <mssgle:LineSegment
-                    End="52.1666667991214,19.1000000206629" />
+                    End="51.8666667991214,21.2333333677715" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6822,7 +6985,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6856,7 +7021,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6878,7 +7045,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6900,7 +7069,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6946,7 +7117,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6968,7 +7141,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6990,7 +7165,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -7026,67 +7203,43 @@ FROM            dim_Comuna INNER JOIN
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="156,42"
-          Id="Package\Dim_Comuna\Data Conversion"
-          TopLeft="135,114" />
-        <NodeLayout
-          Size="178,42"
-          Id="Package\Dim_Comuna\Data Conversion DIM"
-          TopLeft="428,117" />
-        <NodeLayout
-          Size="174,42"
+          Size="174.4,41.6"
           Id="Package\Dim_Comuna\Origen DIM Comuna"
-          TopLeft="429,33" />
+          TopLeft="429,30.3999999793371" />
         <NodeLayout
-          Size="152,42"
+          Size="152,41.6"
           Id="Package\Dim_Comuna\Origen Comuna"
-          TopLeft="143,33" />
+          TopLeft="143,31.2666666528914" />
         <NodeLayout
-          Size="222,42"
+          Size="222.4,41.6"
           Id="Package\Dim_Comuna\Insertar Datos en dim_Comuna"
-          TopLeft="251,443" />
+          TopLeft="125.166671666834,434.999999917348" />
         <NodeLayout
-          Size="130,42"
-          Id="Package\Dim_Comuna\Merge Join"
-          TopLeft="294,286" />
+          Size="167.2,41.6"
+          Id="Package\Dim_Comuna\OLE DB Command"
+          TopLeft="426.666649712457,435.80000196298" />
         <NodeLayout
-          Size="119,42"
-          Id="Package\Dim_Comuna\Sort DIM"
-          TopLeft="459,203" />
+          Size="156,41.6"
+          Id="Package\Dim_Comuna\Data Conversion"
+          TopLeft="136.666661236021,110.933334214952" />
         <NodeLayout
-          Size="154,42"
-          Id="Package\Dim_Comuna\Conditional Split"
-          TopLeft="285,360" />
-        <NodeLayout
-          Size="98,42"
-          Id="Package\Dim_Comuna\Sort"
-          TopLeft="162,201" />
+          Size="177.6,41.6"
+          Id="Package\Dim_Comuna\Data Conversion DIM"
+          TopLeft="427.499983012677,106.600000847181" />
         <EdgeLayout
-          Id="Package\Dim_Comuna.Paths[Sort Output]"
-          TopLeft="210.8,242.6">
+          Id="Package\Dim_Comuna.Paths[Salida de origen de ADO NET]"
+          TopLeft="216.833330618011,72.8666666528914">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="127.733333333333,43.4"
+              EndConnector="0,38.066667562061"
               Start="0,0"
-              End="127.733333333333,35.9">
+              End="0,30.566667562061">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.7224390243902" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21.7224390243902"
-                    Point2="0,25.7224390243902"
-                    Point3="4,25.7224390243902" />
-                  <mssgle:LineSegment
-                    End="123.733333333333,25.7224390243902" />
-                  <mssgle:CubicBezierSegment
-                    Point1="123.733333333333,25.7224390243902"
-                    Point2="127.733333333333,25.7224390243902"
-                    Point3="127.733333333333,29.7224390243902" />
-                  <mssgle:LineSegment
-                    End="127.733333333333,35.9" />
+                    End="0,30.566667562061" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -7097,18 +7250,18 @@ FROM            dim_Comuna INNER JOIN
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Dim_Comuna.Paths[Salida de origen de ADO NET1]"
-          TopLeft="516.3,74.6">
+          TopLeft="516.249991506339,71.9999999793371">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,42.4"
+              EndConnector="0,34.6000008678436"
               Start="0,0"
-              End="0,34.9">
+              End="0,27.1000008678436">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,34.9" />
+                    End="0,27.1000008678436" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -7117,66 +7270,28 @@ FROM            dim_Comuna INNER JOIN
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="97.6,41.6"
+          Id="Package\Dim_Comuna\Sort"
+          TopLeft="169.166659944588,195.000001549721" />
+        <NodeLayout
+          Size="119.2,41.6"
+          Id="Package\Dim_Comuna\Sort DIM"
+          TopLeft="447.499982217949,191.533334855504" />
         <EdgeLayout
-          Id="Package\Dim_Comuna.Paths[Salida de origen de ADO NET]"
-          TopLeft="216,74.6">
+          Id="Package\Dim_Comuna.Paths[Data Conversion Output]"
+          TopLeft="216.316660590305,152.533334214952">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,39.4"
+              EndConnector="0,42.4666673347684"
               Start="0,0"
-              End="0,31.9">
+              End="0,34.9666673347684">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.9" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_Comuna.Paths[Nuevo Registro]"
-          TopLeft="362,401.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,41.4"
-              Start="0,0"
-              End="0,33.9">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,33.9" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-34.07703125,11.2576171875,68.1540625,11.384765625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_Comuna.Paths[Merge Join Output]"
-          TopLeft="360.3,327.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,32.3999999999999"
-              Start="0,0"
-              End="0,24.8999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24.8999999999999" />
+                    End="0,34.9666673347684" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -7187,18 +7302,30 @@ FROM            dim_Comuna INNER JOIN
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Dim_Comuna.Paths[Data Conversion Output1]"
-          TopLeft="517.7,158.6">
+          TopLeft="516.299983012677,148.200000847181">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,44.4000000000001"
+              EndConnector="-9.20000079472851,43.333334008323"
               Start="0,0"
-              End="0,36.9000000000001">
+              End="-9.20000079472851,35.833334008323">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.9000000000001" />
+                    End="0,17.6666670041615" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.6666670041615"
+                    Point2="0,21.6666670041615"
+                    Point3="-4,21.6666670041615" />
+                  <mssgle:LineSegment
+                    End="-5.20000079472851,21.6666670041615" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.20000079472851,21.6666670041615"
+                    Point2="-9.20000079472851,21.6666670041615"
+                    Point3="-9.20000079472851,25.6666670041615" />
+                  <mssgle:LineSegment
+                    End="-9.20000079472851,35.833334008323" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -7207,20 +7334,36 @@ FROM            dim_Comuna INNER JOIN
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Dim_Comuna\Merge Join"
+          TopLeft="288.333321875997,280.266668099297" />
         <EdgeLayout
-          Id="Package\Dim_Comuna.Paths[Data Conversion Output]"
-          TopLeft="211.9,155.6">
+          Id="Package\Dim_Comuna.Paths[Sort Output]"
+          TopLeft="217.966659944588,236.600001549721">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,45.4"
+              EndConnector="114.899995264742,43.6666665495767"
               Start="0,0"
-              End="0,37.9">
+              End="114.899995264742,36.1666665495767">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.9" />
+                    End="0,21.8804877354808" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.8804877354808"
+                    Point2="0,25.8804877354808"
+                    Point3="4,25.8804877354808" />
+                  <mssgle:LineSegment
+                    End="110.899995264742,25.8804877354808" />
+                  <mssgle:CubicBezierSegment
+                    Point1="110.899995264742,25.8804877354808"
+                    Point2="114.899995264742,25.8804877354808"
+                    Point3="114.899995264742,29.8804877354808" />
+                  <mssgle:LineSegment
+                    End="114.899995264742,36.1666665495767" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -7231,36 +7374,134 @@ FROM            dim_Comuna INNER JOIN
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Dim_Comuna.Paths[Sort Output1]"
-          TopLeft="518.6,244.6">
+          TopLeft="507.099982217949,233.133334855504">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-139.533333333333,41.3999999999999"
+              EndConnector="-133.699993675285,47.1333332437937"
               Start="0,0"
-              End="-139.533333333333,33.8999999999999">
+              End="-133.699993675285,39.6333332437937">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.5370731707317" />
+                    End="0,23.9351218981509" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,20.5370731707317"
-                    Point2="0,24.5370731707317"
-                    Point3="-4,24.5370731707317" />
+                    Point1="0,23.9351218981509"
+                    Point2="0,27.9351218981509"
+                    Point3="-4,27.9351218981509" />
                   <mssgle:LineSegment
-                    End="-135.533333333333,24.5370731707317" />
+                    End="-129.699993675285,27.9351218981509" />
                   <mssgle:CubicBezierSegment
-                    Point1="-135.533333333333,24.5370731707317"
-                    Point2="-139.533333333333,24.5370731707317"
-                    Point3="-139.533333333333,28.5370731707317" />
+                    Point1="-129.699993675285,27.9351218981509"
+                    Point2="-133.699993675285,27.9351218981509"
+                    Point3="-133.699993675285,31.9351218981509" />
                   <mssgle:LineSegment
-                    End="-139.533333333333,33.8999999999999" />
+                    End="-133.699993675285,39.6333332437937" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Dim_Comuna\Conditional Split"
+          TopLeft="269.999989271164,363.600001694361" />
+        <EdgeLayout
+          Id="Package\Dim_Comuna.Paths[Merge Join Output]"
+          TopLeft="349.966655573581,321.866668099297">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.733333595064"
+              Start="0,0"
+              End="0,34.233333595064">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.233333595064" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Comuna.Paths[Nuevo Registro]"
+          TopLeft="346.799989271164,405.200001694362">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-110.433317604331,29.7999982229869"
+              Start="0,0"
+              End="-110.433317604331,22.2999982229869">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.8999991114934" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.8999991114934"
+                    Point2="0,14.8999991114934"
+                    Point3="-4,14.8999991114934" />
+                  <mssgle:LineSegment
+                    End="-106.433317604331,14.8999991114934" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-106.433317604331,14.8999991114934"
+                    Point2="-110.433317604331,14.8999991114934"
+                    Point3="-110.433317604331,18.8999991114934" />
+                  <mssgle:LineSegment
+                    End="-110.433317604331,22.2999982229869" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-89.2936900521653,19.8999991114934,68.1540625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Comuna.Paths[Modificacion]"
+          TopLeft="371.066655937831,405.200001694362">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="139.199993774626,30.6000002686181"
+              Start="0,0"
+              End="139.199993774626,23.1000002686181">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.42927845962428" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.42927845962428"
+                    Point2="0,12.4292784596243"
+                    Point3="4,12.4292784596243" />
+                  <mssgle:LineSegment
+                    End="135.199993774626,12.4292784596243" />
+                  <mssgle:CubicBezierSegment
+                    Point1="135.199993774626,12.4292784596243"
+                    Point2="139.199993774626,12.4292784596243"
+                    Point3="139.199993774626,16.4292784596243" />
+                  <mssgle:LineSegment
+                    End="139.199993774626,23.1000002686181" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="42.183063293563,17.4292784596243,54.8338671875,9.7978515625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -7350,7 +7591,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7372,7 +7615,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7406,7 +7651,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7440,7 +7687,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7462,7 +7711,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7484,7 +7735,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7506,7 +7759,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7632,7 +7887,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7666,7 +7923,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7700,7 +7959,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7734,7 +7995,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7756,7 +8019,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7778,7 +8043,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7812,7 +8079,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7882,43 +8151,43 @@ FROM            dim_Comuna INNER JOIN
     design-time-name="Package\Dim_Vendedor">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="146,42"
-          Id="Package\Dim_Vendedor\Origen Cliente"
-          TopLeft="195,107" />
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="169,42"
-          Id="Package\Dim_Vendedor\Origen dim_Cliente"
-          TopLeft="505,109" />
-        <NodeLayout
-          Size="175,42"
-          Id="Package\Dim_Vendedor\Conversión de datos"
-          TopLeft="180,220" />
-        <NodeLayout
-          Size="184,42"
-          Id="Package\Dim_Vendedor\Conversión de datos 1"
-          TopLeft="495,222" />
-        <NodeLayout
-          Size="153,42"
-          Id="Package\Dim_Vendedor\Ordenar Cliente"
-          TopLeft="184,325" />
-        <NodeLayout
-          Size="176,42"
-          Id="Package\Dim_Vendedor\Ordenar dim_Cliente"
-          TopLeft="503,325" />
-        <NodeLayout
-          Size="190,42"
-          Id="Package\Dim_Vendedor\Combinación de mezcla"
-          TopLeft="356,424" />
+          Id="Package\Dim_Vendedor\Destino de Clientes"
+          TopLeft="361,616" />
         <NodeLayout
           Size="171,42"
           Id="Package\Dim_Vendedor\División condicional"
           TopLeft="361,521" />
         <NodeLayout
+          Size="175,42"
+          Id="Package\Dim_Vendedor\Conversión de datos"
+          TopLeft="180,220" />
+        <NodeLayout
           Size="169,42"
-          Id="Package\Dim_Vendedor\Destino de Clientes"
-          TopLeft="361,616" />
+          Id="Package\Dim_Vendedor\Origen dim_Cliente"
+          TopLeft="505,109" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Dim_Vendedor\Conversión de datos 1"
+          TopLeft="495,222" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Dim_Vendedor\Ordenar dim_Cliente"
+          TopLeft="503,325" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Dim_Vendedor\Origen Cliente"
+          TopLeft="195,107" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Dim_Vendedor\Ordenar Cliente"
+          TopLeft="184,325" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Dim_Vendedor\Combinación de mezcla"
+          TopLeft="356,424" />
         <EdgeLayout
           Id="Package\Dim_Vendedor.Paths[Salida de origen de ADO NET]"
           TopLeft="267.75,149">
@@ -7938,51 +8207,9 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_Vendedor.Paths[Salida de origen de ADO NET1]"
-          TopLeft="588.25,151">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,71"
-              Start="0,0"
-              End="0,63.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,63.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim_Vendedor.Paths[Salida de conversión de datos]"
-          TopLeft="264,262">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,63"
-              Start="0,0"
-              End="0,55.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,55.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -8004,14 +8231,64 @@ FROM            dim_Comuna INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Vendedor.Paths[Salida de conversión de datos]"
+          TopLeft="264,262">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63"
+              Start="0,0"
+              End="0,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Vendedor.Paths[Salida de origen de ADO NET1]"
+          TopLeft="588.25,151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71"
+              Start="0,0"
+              End="0,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Dim_Vendedor\Origen Cliente">
+    design-time-name="Package\Dim_Vendedor\Origen dim_Cliente">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -8019,7 +8296,7 @@ FROM            dim_Comuna INNER JOIN
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Dim_Vendedor\Origen dim_Cliente">
+    design-time-name="Package\Dim_Vendedor\Origen Cliente">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
