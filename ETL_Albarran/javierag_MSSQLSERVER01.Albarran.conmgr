@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
-  DTS:ObjectName="localhost.dim_Albarran"
-  DTS:DTSID="{541C258E-0F12-4C58-8CB3-897A25FB57FA}"
+  DTS:ObjectName="javierag_MSSQLSERVER01.Albarran"
+  DTS:DTSID="{3F67057E-1C5D-4646-94F0-1B7972958FA0}"
   DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
   <DTS:ObjectData>
     <DTS:ConnectionManager
-      DTS:ConnectionString="Data Source=javierag\MSSQLSERVER01;Initial Catalog=dim_Albarran;Integrated Security=True;Application Name=SSIS-ETL_Albarran-{541C258E-0F12-4C58-8CB3-897A25FB57FA}localhost.dim_Albarran;" />
+      DTS:ConnectionString="Data Source=javierag\MSSQLSERVER01;Initial Catalog=Albarran;Integrated Security=True;Application Name=SSIS-ETL_Albarran-{3F67057E-1C5D-4646-94F0-1B7972958FA0}javierag\MSSQLSERVER01.Albarran;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>
